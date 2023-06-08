@@ -1,0 +1,82 @@
+<div *ngIf="this.checkCart">
+<h2 class="text-center">Giỏ Hàng Của Bạn</h2>
+<div class="container">
+  <table id="cart" class="table table-hover table-condensed">
+    <thead>
+    <tr>
+      <th style="width:50%">Tên sản phẩm</th>
+      <th style="width:10%">Giá</th>
+      <th style="width:8%">Số lượng</th>
+      <th style="width:22%" class="text-center">Thành tiền</th>
+      <th style="width:10%"> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cart of carts">
+      <td data-th="Product">
+        <div class="row">
+          <div class="col-sm-3 hidden-xs"><img  src="{{cart.watch.imgUrl}}" alt="Sản phẩm 1" class="img-responsive" width="100">
+          </div>
+          <div class="col-sm-9">
+            <h4 class="nomargin" >{{cart.watch.name}}</h4>
+            <p >{{cart.watch.description}}</p>
+          </div>
+        </div>
+      </td>
+      <td data-th="Price">{{cart.watch.price}}</td>
+      <td data-th="Quantity"><input #amount1 (change)="setAmount(cart.id, amount1.value)" class="form-control text-center" value="{{cart.amount}}" type="number" min="1">
+      </td>
+      <td data-th="Subtotal" class="text-center">{{cart.amount*cart.watch.price}}</td>
+<!--      <td class="actions" data-th="">-->
+<!--        <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i>-->
+<!--        </button>-->
+<!--        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>-->
+<!--        </button>-->
+<!--      </td>-->
+    </tr>
+    </tbody><tfoot>
+<!--  <tr class="visible-xs">-->
+<!--    <td class="text-center"><strong>Tổng 200.000 đ</strong>-->
+<!--    </td>-->
+<!--  </tr>-->
+  <tr>
+    <td><a  routerLink="" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
+    </td>
+    <td colspan="2" class="hidden-xs"> </td>
+    <td class="hidden-xs text-center"><strong> Tổng tiền: {{totalPrice}} đ</strong>
+    </td>
+    <td><button data-bs-toggle="modal"
+                data-bs-target="#checkoutModal" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></button>
+    </td>
+  </tr>
+  </tfoot>
+  </table>
+</div>
+
+<div class="modal fade" id="checkoutModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Thanh toán tổng hàng</h1>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <p>Bạn có muốn thành toán tổng số hàng với số tiền?</p>
+        <p>{{totalPrice}} đ</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-secondary" data-bs-dismiss="modal">Close
+        </button>
+
+        <button (click)="deleteAllOrder()" class="btn btn-primary" data-bs-dismiss="modal">Thanh toán</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div *ngIf="!checkCart" style="text-align: center">
+  <img src="https://bizweb.dktcdn.net/100/320/202/themes/714916/assets/empty-cart.png?1650292912948">
+</div>
+

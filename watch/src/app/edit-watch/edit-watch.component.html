@@ -1,0 +1,84 @@
+<form [formGroup]="editWatch" *ngIf="editWatch" (ngSubmit)="submit()" class="container mt-4" >
+  <input type="hidden" formControlName="id">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Tên:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="name">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail2" class="form-label">price:</label>
+    <input type="number" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" formControlName="price">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail3" class="form-label">description:</label>
+    <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" formControlName="description">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail4" class="form-label">dateOfManufacture:</label>
+    <input type="date" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp" formControlName="dateOfManufacture">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail5" class="form-label">status:</label>
+    <input type="text" class="form-control" id="exampleInputEmail5" aria-describedby="emailHelp" formControlName="status">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail6" class="form-label">Anh:</label>
+    <input type="text" class="form-control" id="exampleInputEmail6" aria-describedby="emailHelp" formControlName="imgUrl">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail7" class="form-label">brand:</label>
+
+    <select [compareWith]="compareFn"  id="exampleInputEmail7" formControlName="brandId" class="form-select" aria-label="Default select example">
+      <option *ngFor="let brand of brands" [value]="brand.id">{{brand.tag}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail8" class="form-label">category:</label>
+
+    <select  [compareWith]="compareFn" id="exampleInputEmail8" formControlName="categoryId" class="form-select" aria-label="Default select example">
+      <option *ngFor="let category of categories" [value]="category.id" >{{category.type}}</option>
+    </select>
+  </div>
+  <!--  <div class="mb-3">-->
+  <!--    <label for="exampleInputEmail8" class="form-label">Ngày xuất bản:</label>-->
+  <!--    <input type="date" class="form-control" id="exampleInputEmail8" aria-describedby="emailHelp" formControlName="bookPublishDate">-->
+  <!--  </div>-->
+
+  <!--  <div class="mb-3">-->
+  <!--    <label for="exampleInputEmail9" class="form-label">Số lượng:</label>-->
+  <!--    <input type="number" class="form-control" id="exampleInputEmail9" aria-describedby="emailHelp" formControlName = "bookQuantity">-->
+  <!--  </div>-->
+
+  <!--  <div class="mb-3">-->
+  <!--    <label for="exampleInputEmail1" class="form-label">Nhà xuất bản:</label>-->
+  <!--    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookPublisher">-->
+  <!--  </div>-->
+
+  <!--  <div class="mb-3">-->
+  <!--    <label for="exampleInputEmail1" class="form-label">Thể loại:</label>-->
+
+  <!--    <select formControlName="bookCategoryId" class="form-select" aria-label="Default select example">-->
+  <!--      <option *ngFor="let category of categoryList" [ngValue]="category">{{category.categoryName}}</option>-->
+  <!--    </select>-->
+  <!--  </div>-->
+
+  <!--  <div class="mb-3">-->
+  <!--    <label for="exampleInputEmail1" class="form-label">Tác giả:</label>-->
+  <!--    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookAuthor">-->
+  <!--  </div>-->
+
+  <!--  <div class="mb-3">-->
+  <!--    <label for="exampleInputEmail1" class="form-label">Giảm giá:</label>-->
+  <!--    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookPromotion">-->
+  <!--  </div>-->
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+

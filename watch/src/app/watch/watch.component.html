@@ -1,0 +1,153 @@
+<div class="container-fluid">
+  <div class="row header">
+
+    <!-- nav -->
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/create">Thêm mới</a></li>
+                <li><a class="dropdown-item" routerLink="/cart">Giỏ hàng</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <div class="pe-3 d-flex justify-content-center align-items-center">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Signup</span>
+            </div>
+            <div class="me-3 d-flex justify-content-center align-items-center">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              <span>Login</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <form style="width: 280px; margin-left: 17%; margin-top: 10px" class="d-flex pe-3">
+      <input #nameSearch
+        class="form-control me-2"
+        type="search"
+        placeholder="Search by name"
+        aria-label="Search"
+      />
+      <button (click)="SearchByName(nameSearch.value)" class="btn btn-outline-primary" type="submit">
+        Search
+      </button>
+    </form>
+    <!-- end nav -->
+  </div>
+  <div class="row content">
+    <div class="content-left col-sx-1 col-md-2 p-2 ">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Watch
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <ul *ngFor="let brand of brands" class="list-group">
+                <li (click)="searchBrand(brand.id)" class="list-group-item  text-info mt-3 text-center" aria-current="true">{{brand.tag}}</li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              Accordion Item #2
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content 2</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Accordion Item #3
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content 3</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="content-right col-sx-1  col-md-8 p-2 d-flex flex-wrap" >
+      <p *ngIf="this.size==0">Ko có nội dung</p>
+      <div class="row align-items-center col-sm-4 col-lg-3 card m-2 p-0" *ngFor="let watch of watchList">
+        <div class=" " style="padding: 0">
+          <img style="height: 181px;width: 100%" src="{{watch.imgUrl}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{watch.name}}</h5>
+            <h5>Brand: {{watch.brand.tag}}</h5>
+            <h6>Price: {{watch.price}}</h6>
+            <button  class="btn btn-success" style="margin-right: 5px " (click)="addToCard(watch.id)" ><i class="fa-sharp fa-solid fa-plus"></i></button>
+            <button  class="btn btn-primary" style="margin-right: 5px" [routerLink]="['/edit',watch.id]"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="btn btn-warning" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal" (click)="getInfor(watch.id)" ><i class="fa-solid fa-trash"></i></button>
+
+      </div>
+    </div>
+
+      </div>
+
+
+    </div>
+    <div class=" col-sx-1 col-md-2 p-3 " >
+      <div class="mb-3 ads d-flex justify-content-center align-items-center bg-light text-black border" style="height: 130px">
+        <p>ads</p>
+      </div>
+      <div class="ads d-flex justify-content-center align-items-center bg-light text-black border" style="height: 130px">
+        <p>ads</p>
+      </div>
+    </div>
+  </div>
+  <div class="row p-0 m-0 footer bg-secondary text-white text-center d-flex justify-content-center align-items-center fixed-bottom">
+    <p class="p-0 m-0">Footer</p>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Xóa đồng hồ</h1>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <p>Bạn có muốn xóa đồng hồ với mã là {{inforId}} ?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-secondary" data-bs-dismiss="modal">Close
+        </button>
+
+        <button (click)="deleteWatch(inforId)" class="btn btn-primary" data-bs-dismiss="modal">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
